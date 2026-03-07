@@ -6,6 +6,11 @@
 
 <p align="center"><b>No more quota waste — your AI subscriptions, everywhere.</b></p>
 
+<p align="center">
+  <a href="https://github.com/romgX/openrelay/releases/latest"><img src="https://img.shields.io/github/v/release/romgX/openrelay?label=Download&color=brightgreen" alt="Download"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
+</p>
+
 <p align="center"><a href="#english">English</a> | <a href="#中文">中文</a></p>
 
 ---
