@@ -4,13 +4,7 @@
 
 <h1 align="center">OpenRelay</h1>
 
-<p align="center"><b>No more quota waste — your AI subscriptions, everywhere.</b></p>
-
-<p align="center">
-  <a href="https://github.com/romgX/openrelay/releases/latest"><img src="https://img.shields.io/github/v/release/romgX/openrelay?label=Download&color=brightgreen" alt="Download"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
-  <a href="https://t.me/openrelay_updates"><img src="https://img.shields.io/badge/Telegram-Updates-2CA5E0?logo=telegram" alt="Telegram"></a>
-</p>
+<p align="center"><b>Your AI subscriptions, everywhere.</b> Stop paying for AI tools you can't fully use.</p>
 
 <p align="center"><a href="#english">English</a> | <a href="#中文">中文</a></p>
 
@@ -102,9 +96,8 @@ xattr -d com.apple.quarantine openrelay   # first time only
 ```
 
 ```powershell
-# Windows (download from Releases page, then run)
-Invoke-WebRequest -Uri "https://github.com/romgX/openrelay/releases/latest/download/openrelay-windows-x64.exe" -OutFile openrelay.exe
-.\openrelay.exe
+# Windows
+.\openrelay-windows-x64.exe
 ```
 
 ### npm (requires Node.js >= 18)
@@ -140,7 +133,7 @@ See [DISCLAIMER.md](DISCLAIMER.md) and [PRIVACY.md](PRIVACY.md) for details.
 
 Open Core model:
 - **Framework** (proxy, format translation, config): [MIT](LICENSE)
-- **Pro features** (custom model groups, priority support): [Commercial](COMMERCIAL-LICENSE.txt)
+- **Pro features** (custom model groups, unlimited requests): [Commercial](COMMERCIAL-LICENSE.txt)
 
 ---
 
@@ -150,11 +143,7 @@ Open Core model:
 
 ## 中文说明
 
-**不再为配额烦恼，让你的 AI 订阅，随处可用。**
-
-<p align="center">
-  <a href="https://t.me/openrelay_updates">📢 加入 Telegram 频道获取更新 →</a>
-</p>
+**你的 AI 订阅，处处可用。** 别再为用不完的 AI 工具白白付费。
 
 ---
 
@@ -227,17 +216,14 @@ Groq 免费额度用完 → 自动切到 Cerebras → 再切 SambaNova。**你�
 ### 安装
 
 ```bash
-# macOS — 下载二进制（无需 Node.js）
+# 下载二进制（无需 Node.js）
 curl -L -o openrelay https://github.com/romgX/openrelay/releases/latest/download/openrelay-macos-arm64
 chmod +x openrelay
 xattr -d com.apple.quarantine openrelay   # 仅首次需要
 ./openrelay
-```
 
-```powershell
-# Windows
-Invoke-WebRequest -Uri "https://github.com/romgX/openrelay/releases/latest/download/openrelay-windows-x64.exe" -OutFile openrelay.exe
-.\openrelay.exe
+# 或通过 npm
+npm install -g openrelay && openrelay
 ```
 
 浏览器打开 `http://localhost:18765` — 一切在 Web 面板中管理，支持中英双语。

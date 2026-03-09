@@ -25,4 +25,4 @@
 - Single-file binary (Node.js SEA) — no runtime dependencies
 - Web management dashboard (bilingual EN/ZH)
 - Auto-detection of installed AI apps and credentials
-- License system with device management
+- License system: Free (50 req/day) / Pro (unlimited)

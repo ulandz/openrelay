@@ -34,7 +34,7 @@ OpenRelay makes the following network connections:
 2. **License verification server** (`license.limitlessmeto.com`, hosted on Cloudflare) — periodic license status check
    - **Sent**: anonymous device identifier and license token
    - **NOT sent**: credentials, conversation content, usage details, or personal information
-   - **Purpose**: verify license status and active device count
+   - **Purpose**: verify license tier (Free / Pro) and active device count
 3. **GitHub Releases API** (optional) — to check for software updates
 
 ## Local Logging
