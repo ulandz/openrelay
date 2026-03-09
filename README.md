@@ -6,13 +6,6 @@
 
 <p align="center"><b>Your AI subscriptions, everywhere.</b> Stop paying for AI tools you can't fully use.</p>
 
-<p align="center">
-  <a href="https://github.com/romgX/openrelay/releases/latest"><img src="https://img.shields.io/github/v/release/romgX/openrelay?color=blue&label=download" alt="Latest Release"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
-  <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-lightgrey" alt="Platform">
-  <a href="https://t.me/openrelay_updates"><img src="https://img.shields.io/badge/Telegram-updates-blue?logo=telegram" alt="Telegram"></a>
-</p>
-
 <p align="center"><a href="#english">English</a> | <a href="#中文">中文</a></p>
 
 ---
@@ -21,32 +14,11 @@
 
 ## The Problem
 
-**Your AI subscriptions are locked in silos.**
+How do you find more free AI model quotas?
+How do you connect free or paid quotas to the tools you're already using?
+How do you configure Claude Code, OpenCode, or any AI tool in one click?
 
-Claude Pro only works in Claude Desktop. Kiro quota only works in Kiro. Groq is free but you have to configure every tool manually. Cursor burned through your 500 requests and now you're stuck.
-
-**OpenRelay breaks the silos.**
-
-- Find more free AI quota (Groq, Cerebras, SambaNova, Gemini — all free, all auto-discovered)
-- Connect any quota to any tool you're already using
-- One-click configure Claude Code, OpenClaw, Aider, Goose, and more
-
-## Demo
-
-![OpenRelay Demo](demo.gif)
-
-<table>
-  <tr>
-    <td><img src="screenshot-providers.png" alt="Provider Dashboard" width="400"><br><sub>Auto-discovered providers & quota status</sub></td>
-    <td><img src="screenshot-work.png" alt="Work — CLI tool config" width="400"><br><sub>One-click configure Claude Code, OpenClaw, Aider...</sub></td>
-  </tr>
-  <tr>
-    <td><img src="screenshot-ide.png" alt="IDE RPC Proxies" width="400"><br><sub>IDE proxies — Cursor, Windsurf, VS Code Copilot</sub></td>
-    <td><img src="screenshot-custom.png" alt="Custom Model Groups" width="400"><br><sub>Custom model groups with auto-failover</sub></td>
-  </tr>
-</table>
-
----
+**OpenRelay solves all of this.**
 
 ## What OpenRelay Actually Does
 
@@ -109,49 +81,6 @@ When Groq's free quota runs out → automatic failover to Cerebras → then Samb
 
 ---
 
-## Supported Providers (29 total)
-
-### IDE Providers — auto-extracted, no API key needed
-
-| Provider | Free Quota | Notes |
-|----------|-----------|-------|
-| **Claude Desktop** | Your subscription | Claude Pro/Max |
-| **Claude Code** | Your subscription | Claude Pro/Max |
-| **Kiro** (AWS) | 50 credits/month + 500 new user | Free Claude Sonnet |
-| **Windsurf** (Codeium) | Unlimited autocomplete + 25 credits/month | |
-| **Antigravity** | Included with IDE | Requires IDE running |
-| **OpenCode** | Unlimited | Built-in GLM-4.7 |
-| **VS Code Copilot** | Your subscription | GitHub Copilot |
-
-### Direct API Providers — bring your own key
-
-| Provider | Free Tier |
-|----------|-----------|
-| **Groq** | 30 RPM, up to 14,400 req/day |
-| **Cerebras** | 1M tokens/day |
-| **SambaNova** | 200K tokens/day |
-| **Gemini** | 1M context, generous free tier |
-| **OpenRouter** | 20 RPM, 50 req/day, 30+ models |
-| **DeepSeek** | Very cheap, not free |
-| **Mistral** | Free tier available |
-| **xAI (Grok)** | API key required |
-| **Together AI** | Free credits on signup |
-| **Fireworks** | Free credits on signup |
-| **Cohere** | Free trial |
-| **Perplexity** | API key required |
-| **Replicate** | Pay per use |
-| **Anyscale** | API key required |
-| **Lepton** | Free tier available |
-| **Novita** | API key required |
-| **01.AI** | API key required |
-| **Moonshot** | API key required |
-| **Zhipu (GLM)** | Free credits on signup |
-| **Baidu (ERNIE)** | Free credits on signup |
-| **MiniMax** | Free credits on signup |
-| **OpenRouter** | 20 RPM, 50 req/day |
-
----
-
 ## Install
 
 ### Binary (recommended, no Node.js needed)
@@ -159,7 +88,7 @@ When Groq's free quota runs out → automatic failover to Cerebras → then Samb
 Download from [GitHub Releases](https://github.com/romgX/openrelay/releases):
 
 ```bash
-# macOS (Apple Silicon)
+# macOS
 curl -L -o openrelay https://github.com/romgX/openrelay/releases/latest/download/openrelay-macos-arm64
 chmod +x openrelay
 xattr -d com.apple.quarantine openrelay   # first time only
@@ -188,8 +117,6 @@ openrelay --test         # Test all provider connections
 
 Open `http://localhost:18765` → everything is managed from the Web dashboard.
 
----
-
 ## Security
 
 **Credentials never leave your machine.** All tokens, cookies, and API keys stay in local process memory. Nothing is uploaded anywhere.
@@ -201,11 +128,6 @@ Open `http://localhost:18765` → everything is managed from the Web dashboard.
 **Auditable.** The credential handling code ([cookie.ts](src/cookie.ts)) is open source for security review.
 
 See [DISCLAIMER.md](DISCLAIMER.md) and [PRIVACY.md](PRIVACY.md) for details.
-
-## Community
-
-- Telegram: [t.me/openrelay_updates](https://t.me/openrelay_updates)
-- Issues: [GitHub Issues](https://github.com/romgX/openrelay/issues)
 
 ## License
 
@@ -226,33 +148,11 @@ Open Core model:
 ---
 
 ## 痛点
+怎么样找到更多的免费AI模型配额？
+怎么样把免费或收费的配额接到你正在使用的工具中？
+怎么样能一键配置你的claude code 、openclaw AI模型？
 
-**你的 AI 订阅，各自为政。**
-
-Claude Pro 只能在 Claude Desktop 用。Kiro 配额只能在 Kiro 用。Groq 免费但每个工具都要手动配置。Cursor 500 次用完了，你只能停下来。
-
-**OpenRelay 打破这道墙。**
-
-- 帮你找到更多免费 AI 模型配额（Groq、Cerebras、SambaNova、Gemini——全免费、全自动发现）
-- 帮你把免费或收费的配额接入你正在使用的 AI 工具
-- 一键配置 Claude Code、OpenClaw、Aider、Goose 等所有工具的模型
-
-## 演示
-
-![OpenRelay 演示](demo.gif)
-
-<table>
-  <tr>
-    <td><img src="screenshot-providers.png" alt="Provider 面板" width="400"><br><sub>自动发现的 Provider 和配额状态</sub></td>
-    <td><img src="screenshot-work.png" alt="Work — CLI 工具配置" width="400"><br><sub>一键配置 Claude Code、OpenClaw、Aider...</sub></td>
-  </tr>
-  <tr>
-    <td><img src="screenshot-ide.png" alt="IDE RPC 代理" width="400"><br><sub>IDE 代理——Cursor、Windsurf、VS Code Copilot</sub></td>
-    <td><img src="screenshot-custom.png" alt="自定义模型组" width="400"><br><sub>自定义模型组，自动故障转移</sub></td>
-  </tr>
-</table>
-
----
+**OpenRelay 一键解决。**
 
 ## OpenRelay 能做什么
 
@@ -313,59 +213,25 @@ Cursor 配额烧完了？Windsurf 额度用光了？别停下编码 — 无缝�
 
 Groq 免费额度用完 → 自动切到 Cerebras → 再切 SambaNova。**你的 AI 永不停机。** 跨 Provider 轮询确保最大可用时间，零手动切换。
 
----
-
-## 安装
+### 安装
 
 ```bash
-# macOS（Apple Silicon）下载二进制（无需 Node.js）
+# 下载二进制（无需 Node.js）
 curl -L -o openrelay https://github.com/romgX/openrelay/releases/latest/download/openrelay-macos-arm64
 chmod +x openrelay
 xattr -d com.apple.quarantine openrelay   # 仅首次需要
 ./openrelay
-```
 
-```powershell
-# Windows
-.\openrelay-windows-x64.exe
-```
-
-```bash
-# 或通过 npm（需要 Node.js >= 18）
+# 或通过 npm
 npm install -g openrelay && openrelay
-```
-
-## 快速上手
-
-```bash
-openrelay           # 启动代理
-openrelay --setup   # macOS 首次运行：授权 Keychain
-openrelay --test    # 测试所有 Provider 连接
 ```
 
 浏览器打开 `http://localhost:18765` — 一切在 Web 面板中管理，支持中英双语。
 
----
-
-## 安全
+### 安全
 
 **凭据不离开本机** — 所有 token、cookie、API key 仅在本地内存中使用，不会上传到任何服务器。
 
-**直连 AI 后端** — 请求从你的机器直接发送到 AI Provider，没有中转服务器。
-
-**不记录请求内容** — 消息内容从不被日志记录、缓存或持久化。
+**直连 API** — 请求从你的机器直接发送到 AI 后端，没有中转服务器。
 
 **可审计** — 凭据处理代码（[cookie.ts](src/cookie.ts)）开源可审。
-
-详见 [DISCLAIMER.md](DISCLAIMER.md) 和 [PRIVACY.md](PRIVACY.md)。
-
-## 社区
-
-- Telegram 更新频道：[t.me/openrelay_updates](https://t.me/openrelay_updates)
-- 问题反馈：[GitHub Issues](https://github.com/romgX/openrelay/issues)
-
-## 许可证
-
-Open Core 模式：
-- **框架部分**（代理、格式转换、配置）：[MIT](LICENSE)
-- **Pro 功能**（模型组合、无限请求）：[商业授权](COMMERCIAL-LICENSE.txt)
