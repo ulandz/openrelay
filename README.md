@@ -11,6 +11,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="License"></a>
   <img src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows-lightgrey" alt="Platform">
   <a href="https://t.me/openrelay_updates"><img src="https://img.shields.io/badge/Telegram-updates-blue?logo=telegram" alt="Telegram"></a>
+  <a href="https://t.me/openrelay_chat"><img src="https://img.shields.io/badge/Telegram-chat-blue?logo=telegram" alt="Chat"></a>
 </p>
 
 <p align="center"><a href="#english">English</a> | <a href="#中文">中文</a></p>
@@ -204,7 +205,8 @@ See [DISCLAIMER.md](DISCLAIMER.md) and [PRIVACY.md](PRIVACY.md) for details.
 
 ## Community
 
-- Telegram: [t.me/openrelay_updates](https://t.me/openrelay_updates)
+- Telegram Chat: [t.me/openrelay_chat](https://t.me/openrelay_chat)
+- Telegram Updates: [t.me/openrelay_updates](https://t.me/openrelay_updates)
 - Issues: [GitHub Issues](https://github.com/romgX/openrelay/issues)
 
 ## License
@@ -361,6 +363,7 @@ openrelay --test    # 测试所有 Provider 连接
 
 ## 社区
 
+- Telegram 讨论群：[t.me/openrelay_chat](https://t.me/openrelay_chat)
 - Telegram 更新频道：[t.me/openrelay_updates](https://t.me/openrelay_updates)
 - 问题反馈：[GitHub Issues](https://github.com/romgX/openrelay/issues)
 
