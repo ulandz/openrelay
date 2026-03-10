@@ -23,6 +23,7 @@ export interface DesktopCookies {
   organizationId: string
   deviceId: string
   cfClearance: string
+  cfBm: string
 }
 
 // ---- macOS-specific functions ----
@@ -131,6 +132,7 @@ async function extractCookiesDarwin(): Promise<DesktopCookies> {
     organizationId: '',
     deviceId: '',
     cfClearance: '',
+    cfBm: '',
   }
 
   try {
@@ -149,6 +151,7 @@ async function extractCookiesDarwin(): Promise<DesktopCookies> {
         case 'lastActiveOrg': result.organizationId = value; break
         case 'anthropic-device-id': result.deviceId = value; break
         case 'cf_clearance': result.cfClearance = value; break
+        case '__cf_bm': result.cfBm = value; break
       }
     }
   } finally {
@@ -289,6 +292,7 @@ async function extractCookiesWindows(): Promise<DesktopCookies> {
     organizationId: '',
     deviceId: '',
     cfClearance: '',
+    cfBm: '',
   }
 
   try {
@@ -307,6 +311,7 @@ async function extractCookiesWindows(): Promise<DesktopCookies> {
         case 'lastActiveOrg': result.organizationId = value; break
         case 'anthropic-device-id': result.deviceId = value; break
         case 'cf_clearance': result.cfClearance = value; break
+        case '__cf_bm': result.cfBm = value; break
       }
     }
   } finally {
