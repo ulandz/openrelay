@@ -20,33 +20,50 @@
 
 Download the latest release from GitHub: https://github.com/romgX/openrelay/releases
 
-Supported platforms: macOS (arm64/x64), Windows (x64).
+Supported platforms: macOS (ARM64), Windows (x64).
 
-The binary release requires no Node.js. Running from source requires Node.js >= 18.
+The binary release requires no Node.js — it's ready to use out of the box.
 
 ### Q: How do I start it?
 
-```bash
-openrelay start
-```
-
-Check status:
+**Binary release:**
 
 ```bash
-openrelay status
+# macOS
+./openrelay
+
+# Windows
+.\openrelay-windows-x64.exe
 ```
 
-Default port: `18765`.
+**npm install (requires Node.js >= 18):**
+
+```bash
+npm install -g openrelay
+openrelay
+```
+
+First time on macOS — authorize Keychain access:
+
+```bash
+./openrelay --setup
+```
+
+Once started, open `http://localhost:18765` in your browser — all configuration is done through the Web dashboard.
+
+### Q: How do I test all provider connections?
+
+```bash
+./openrelay --test
+```
 
 ### Q: How do I set it to start on boot?
 
-macOS:
+There's no built-in auto-start command yet. Recommended approaches:
 
-```bash
-openrelay service install
-```
+macOS: Add the launch command to Login Items, or create a LaunchAgent plist.
 
-This creates a LaunchAgent that starts automatically after login.
+Windows: Place a shortcut in the `shell:startup` folder.
 
 ---
 
@@ -54,33 +71,40 @@ This creates a LaunchAgent that starts automatically after login.
 
 ### Q: How do I connect Claude Code?
 
-Option 1: One-click setup
+**Option 1: Web dashboard one-click setup (recommended)**
 
-```bash
-openrelay config set-app claude-code claude-sonnet-4-6
-```
+Open `http://localhost:18765` → **Work** tab → select a Provider for Claude Code → toggle on → **reopen your terminal**.
 
-Option 2: Set environment variables manually
+**Option 2: Set environment variables manually**
 
 ```bash
 export ANTHROPIC_BASE_URL=http://localhost:18765
 export ANTHROPIC_API_KEY=unused
 ```
 
-### Q: How do I connect Cursor / Windsurf / Cline?
+### Q: How do I connect Cursor?
 
-```bash
-openrelay config set-app cursor claude-sonnet-4-6
-openrelay config set-app windsurf claude-sonnet-4-6
-```
+Open `http://localhost:18765` → **IDE** tab → Cursor section → select Provider and model → click **Start**.
 
-Or set the API Base URL to `http://localhost:18765` in your IDE settings.
+**Important**: After starting the proxy, you **must launch Cursor from the dashboard's launch button**. Opening Cursor directly will bypass the proxy.
+
+### Q: How do I connect Windsurf / Antigravity / VS Code Copilot?
+
+Open `http://localhost:18765` → **IDE** tab → select the IDE → choose Provider and model → click **Start**.
+
+- **Windsurf** — auto-configured after Start. Reopen Windsurf to apply.
+- **Antigravity** — auto-configured after Start. **Restart Antigravity** to apply.
+- **VS Code Copilot** — auto-configured after Start. Select the Ollama model in Copilot Chat.
+
+### Q: How do I connect Aider / Goose / Amp and other CLI tools?
+
+Open `http://localhost:18765` → **Work** tab → select a Provider for each tool → toggle on → **reopen your terminal**.
 
 ### Q: How do I view current configuration?
 
-```bash
-openrelay config list
-```
+Open the Web dashboard at `http://localhost:18765` — all provider status, connections, and usage stats are shown there.
+
+Config file location: `~/.openrelay/config.json`
 
 ---
 
@@ -88,27 +112,24 @@ openrelay config list
 
 ### Q: How do I add free providers?
 
-```bash
-openrelay provider add
-```
+**IDE Providers** (auto-discovered, no setup needed): Claude Desktop, Claude Code, Kiro, Windsurf, Antigravity, OpenCode, VS Code Copilot.
 
-Interactive setup will guide you. Recommended free providers:
+**Direct API Providers** (API key required): Open the Web dashboard → click an unconnected API provider in the sidebar → enter your API key.
+
+Recommended free providers:
 - **Groq** — 14,400 req/day, Llama 3.3 70B, extremely fast
 - **Cerebras** — 1M tokens/day, Llama 70B
-- **Google AI Studio** — Gemini series, generous free tier
+- **Gemini** — generous free tier, 1M context
 - **SambaNova** — Llama 405B, 200K tokens/day
+- **OpenRouter** — 30+ free models
 
 ### Q: What happens when free quota runs out?
 
-OpenRelay automatically fails over to the next available provider. If all providers are rate-limited, they'll recover in a few minutes. We recommend registering multiple providers for better reliability.
+Use model groups (**Custom** tab) to combine multiple providers. When Groq runs out → auto-failover to Cerebras → then SambaNova. We recommend registering multiple providers for better reliability.
 
 ### Q: How do I check provider status?
 
-```bash
-openrelay provider list
-```
-
-Or open the Web dashboard at `http://localhost:18765`.
+Open the Web dashboard at `http://localhost:18765` — green dots in the sidebar mean the provider is connected. Click any provider for detailed status and quota info.
 
 ---
 
@@ -118,48 +139,43 @@ Or open the Web dashboard at `http://localhost:18765`.
 
 **This is a normal informational message, not an error.**
 
-impit is an optional Chrome TLS fingerprint library used to bypass CloudFlare JA3/JA4 detection. Without it, OpenRelay automatically falls back to native fetch — **everything works normally**.
+impit is an optional Chrome TLS fingerprint library used to bypass CloudFlare JA3/JA4 detection. The binary release cannot embed impit (it contains native .node files), so it falls back to native fetch automatically.
 
-You do NOT need to install impit manually. Only relevant if you encounter persistent 403 errors with the Claude Desktop provider.
+If you encounter persistent 403 errors with the Claude Desktop provider, use the npm install method (`npm install -g openrelay`) — impit will be installed and enabled automatically.
 
 ### Q: `connection refused localhost:18765`
 
 OpenRelay is not running. Start it:
 
 ```bash
-openrelay start
+./openrelay          # macOS
+.\openrelay-windows-x64.exe   # Windows
 ```
 
 If already started but still getting errors, check if the port is in use:
 
 ```bash
+# macOS
 lsof -i :18765
+
+# Windows
+netstat -ano | findstr 18765
 ```
 
 ### Q: `401 Unauthorized`
 
-API key expired or invalid. Check your provider keys:
+API key expired or invalid. Open the Web dashboard and check the connection status of the affected provider.
 
-```bash
-openrelay config list
-```
-
-If it's a Claude Code OAuth token expiration:
-
-```bash
-claude auth login
-```
-
-OpenRelay will automatically pick up the new token after re-authentication.
+For IDE providers (Claude Desktop, Kiro, etc.), try opening the corresponding IDE app to refresh its token, then click "Reconnect" in the dashboard.
 
 ### Q: `rate limit exceeded`
 
-Current provider quota is exhausted. OpenRelay automatically switches to the next available provider.
+Current provider quota is exhausted. OpenRelay automatically switches to the next available provider (if you've configured model groups).
 
 If all providers are rate-limited:
-1. Wait a few minutes and retry
-2. Add more providers: `openrelay provider add`
-3. Check if any provider keys have expired: `openrelay provider list`
+1. Wait a few minutes and retry (most free quotas reset per minute/hour)
+2. Add more providers in the Web dashboard
+3. Check if any provider keys have expired
 
 ### Q: `403 Forbidden` (CloudFlare block)
 
@@ -167,29 +183,35 @@ Some providers (e.g., Claude Desktop) use CloudFlare protection. OpenRelay autom
 
 If 403 persists:
 1. Check if impit is loaded (look in startup logs)
-2. Try restarting: `openrelay restart`
-3. Clear cookie cache and retry
+2. Restart OpenRelay
+3. Reopen Claude Desktop to let it refresh cookies
 
 ### Q: `ECONNRESET` or `socket hang up`
 
-Network instability or provider-side disconnection. Usually temporary — OpenRelay retries automatically.
+Network instability or provider-side disconnection. Usually temporary — just retry.
 
 If it happens frequently:
 1. Check your network connection
-2. Check if you need a proxy (`openrelay config set proxy http://...`)
-3. Switch to a different provider
+2. If using a proxy (Clash, etc.), add provider domains to your direct rules
+3. Switch to a different provider in the Web dashboard
 
 ### Q: `EADDRINUSE` on startup
 
-Port 18765 is already in use. Another OpenRelay instance may be running:
+Port 18765 is already in use. Another OpenRelay instance may be running.
 
 ```bash
-openrelay status
-# If it shows running, no need to start again
+# macOS — find the process
+lsof -i :18765
+kill <PID>
 
-# To force restart
-openrelay restart
+# Windows
+netstat -ano | findstr 18765
+taskkill /PID <PID> /F
 ```
+
+### Q: Using Clash or other proxy?
+
+OpenRelay auto-detects Clash fake-ip (198.18.x.x) and uses DoH fallback. For best results, add `license.limitlessmeto.com` to your direct rules.
 
 ---
 
@@ -197,28 +219,41 @@ openrelay restart
 
 ### Q: Claude Code shows `model not found`
 
-Confirm OpenRelay is running and the model name is correct:
+Confirm OpenRelay is running and check available models:
 
 ```bash
-openrelay status
 curl http://localhost:18765/v1/models
 ```
 
-Make sure environment variables are set correctly (`ANTHROPIC_BASE_URL` and `ANTHROPIC_API_KEY`).
+Make sure environment variables are set correctly. The easiest way: configure in the Web dashboard **Work** tab, then reopen your terminal.
 
 ### Q: Cursor can't connect to OpenRelay
 
-1. Confirm OpenRelay is running: `openrelay status`
-2. In Cursor Settings → Models:
-   - API Base URL: `http://localhost:18765/v1`
-   - API Key: `unused` (any value works)
-3. Test connection: `curl http://localhost:18765/v1/models`
+1. Confirm OpenRelay is running
+2. Start the Cursor RPC proxy in the Web dashboard **IDE** tab
+3. **You must launch Cursor from the dashboard's launch button** (opening Cursor directly bypasses the proxy)
+4. First-time use requires trusting the TLS certificate (the dashboard will guide you)
+
+### Q: Kiro shows disconnected
+
+Kiro's AWS token expires after ~1 hour. To fix:
+1. Open Kiro IDE to let it refresh the token
+2. Go back to the Web dashboard and click "Reconnect"
+3. You can also use "Switch Account" in the dashboard to re-login
 
 ### Q: Responses are very slow
 
 1. Check which provider/model is in use — larger models (e.g., 405B) are slower
 2. Switch to faster providers (Groq and Cerebras are the fastest)
-3. Check network latency (`ping` the provider's domain)
+3. Check network latency
+
+### Q: Where is my data?
+
+Config file: `~/.openrelay/config.json`
+
+Logs print to the terminal (stdout) where OpenRelay was launched. They contain only errors and request metadata (provider, model, status) — **no message content or credentials**.
+
+To delete all data: `rm -rf ~/.openrelay/`
 
 ---
 
