@@ -203,6 +203,10 @@ Open `http://localhost:18765` → everything is managed from the Web dashboard.
 
 See [DISCLAIMER.md](DISCLAIMER.md) and [PRIVACY.md](PRIVACY.md) for details.
 
+## FAQ
+
+Having trouble? Check the **[FAQ (English)](faq-en.md)** | **[常见问题 (中文)](faq.md)** for solutions to common issues.
+
 ## Community
 
 - Telegram Chat: [t.me/openrelay_chat](https://t.me/openrelay_chat)
@@ -360,6 +364,10 @@ openrelay --test    # 测试所有 Provider 连接
 **可审计** — 凭据处理代码（[cookie.ts](src/cookie.ts)）开源可审。
 
 详见 [DISCLAIMER.md](DISCLAIMER.md) 和 [PRIVACY.md](PRIVACY.md)。
+
+## 常见问题
+
+遇到问题？查看 **[常见问题 (中文)](faq.md)** | **[FAQ (English)](faq-en.md)**。
 
 ## 社区
 
