@@ -360,6 +360,7 @@ Having trouble? Check the **[FAQ (English)](faq-en.md)** | **[常见问题 (中�
 
 ## Community
 
+- LINUX DO: [linux.do](https://linux.do)
 - Telegram Chat: [t.me/openrelay_chat](https://t.me/openrelay_chat)
 - Telegram Updates: [t.me/openrelay_updates](https://t.me/openrelay_updates)
 - Issues: [GitHub Issues](https://github.com/romgX/openrelay/issues)
